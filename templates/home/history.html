@@ -1,0 +1,46 @@
+{% extends 'home/base.html' %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/style.css' %} ">
+
+{% endblock css %}
+
+{% block body %}
+
+<div class="container mt-4">
+
+    {% if images|length > 0  %}
+    <table class="table text-center" style="vertical-align:middle; ">
+        <thead>
+            <tr>
+                <th scope="col">Image</th>
+                <th scope="col">Text</th>
+                <th scope="col">Download</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for image in images %}
+            <tr>
+                <td class="imageDiv"><img src="{{image.watermraked_image.url}}" alt=""></td>
+                <td class="center_table_data">
+                    {{image.watermark_text}}
+       </td>
+                <td >
+                    
+                        <a href="{{image.watermraked_image.url}}" class="btn btn-primary" download>Download</a>
+                  
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <h2>No Images Found.</h2>
+
+    <div class=""><a href="{% url 'home' %}" class=" mt-4 mb-4 btn btn-primary btn-lg">
+        Let's Create Watermark
+    </a></div>
+    {% endif %}
+</div>
+
+{% endblock body %}

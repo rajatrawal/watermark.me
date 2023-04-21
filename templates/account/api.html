@@ -1,0 +1,154 @@
+{% extends 'home/base.html' %}
+{% block css %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/prism.css' %} ">
+<style>
+
+</style>
+{% endblock css %}
+{% block body %}
+<div class="container mt-4">
+    <h4 class="mt-3 mb-4" id="element">
+        
+    </h4>
+    <h3 class="mt-2 mb-3">Your Credentials</h3>
+    <pre>
+        <code  class='language-python'>
+            username = "{{user_data.user.username}}"
+      
+            key = "{{user_data.api_key}}"
+            
+        </code>
+    </pre>
+    <h2 class="mt-4 mb-4">Docs</h2>
+
+    <pre>
+        <code  class='language-python'>
+            import requests
+            import urllib
+            
+            values = {
+                "username":"YOUR_USERNAME",
+                "key":"YOUR_API_KEY",
+                "watermarkText":"WATERMARK_TEXT",
+                "noOfWatermark":NO_OF_WATERMARK,
+                "size":SIZE_OF_WATERMARK,
+                "opacity":OPACITY_OF_WATERMARK,
+                "quality":QUALITY_OF_IMAGE
+            }
+            
+            url = "http://127.0.0.1:8000/api/watermarkImage/"
+            
+            files = {'images': open(r'YOUR_IMAGE_PATH','rb')}
+            
+            r = requests.post(url, files=files, data=values)
+            data = r.json()
+            
+            for i in data:
+                name = i.split('/')[-1]
+                urllib.request.urlretrieve(i, name)
+        </code>
+    </pre>
+    <div class="mt-4 p-4">
+        <p class=' mb-4 fw-bold'>Here is explaination of fields</p>
+        <table class="table">
+            <thead>
+                <tr>
+
+                    <th scope="col">Field</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+
+                    <td>username</td>
+                    <td>Your username is  <span class="fw-bold">{{user_data.user.username}}</span></td>
+                    <td>Mandatory Field</td>
+                </tr>
+                <tr>
+
+                    <td>key</td>
+                    <td>Your api_key is  <span class="fw-bold">{{user_data.api_key}}</span></td>
+                    <td>Mandatory Field</td>
+
+                </tr>
+                <tr>
+                    <td>watermarkText</td>
+                    <td>The watermark text will be printed on image</td>
+                    <td>Default = "watermark.me"</td>
+                </tr>
+                <tr>
+                    <td>noOfWatermark</td>
+                    <td>The no of watermark text on image</td>
+                    <td>An interger field <br> Default = 1 <br> Min = 1 and Max = 5</td>
+                </tr>
+                <tr>
+                    <td>size</td>
+                    <td>Size of watermark in % of height</td>
+                    <td>An interger field <br> Default = 5 <br> Min = 1 and Max = 100</td>
+                </tr>
+                <tr>
+                    <td>opacity</td>
+                    <td>Opacity of watermark </td>
+                    <td>An interger field <br> Default = 100 <br> Min = 1 and Max = 100</td>
+                </tr>
+                <tr>
+                    <td>quality</td>
+                    <td>Quality of watermarked image </td>
+                    <td>An interger field <br> Default = 100 <br> Min = 1 and Max = 100</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="responseDiv">
+        <div class="h4 mb-3 text-success">200 Response [POST]</div>
+        <pre>
+            <code  class='language-python'>
+               ['FILE_URL_1','FILE_URL_2',....]
+                
+            </code>
+        </pre>
+    </div>
+    <div class="responseDiv mt-4">
+        <div class="h4 mb-3 text-danger">404 Response [GET]</div>
+        <pre>
+            <code  class='language-python'>
+                {'message': 'invalid request type'}
+                
+            </code>
+        </pre>
+    </div>
+    <div class="responseDiv mt-4">
+        <div class="h4 mb-3 text-danger">404 Response [Invalid username or key]</div>
+        <pre>
+            <code  class='language-python'>
+                {'message': 'invalid user or api key'}
+                
+            </code>
+        </pre>
+    </div>
+    <div class="responseDiv mt-4 mb-4">
+        <div class="h4 mb-3 ">To send multiple files</div>
+        <pre>
+            <code  class='language-python'>
+                files = [('images',open(r'YOUR_IMAGE_PATH','rb')),
+                ('images',open(r'YOUR_IMAGE_PATH','rb'))]
+                
+            </code>
+        </pre>
+    </div>
+</div>
+
+{% block script %}
+<script src="{% static 'js/prism.js' %}"></script>
+<script src="https://unpkg.com/typed.js@2.0.15/dist/typed.umd.js"></script>
+<script>
+    var typed = new Typed('#element', {
+        strings: ['Create Free,Unlimited watermarks with our powerfull Bussiness API.'],
+        typeSpeed: 40,
+      });
+</script>
+{% endblock script %}
+{% endblock body %}

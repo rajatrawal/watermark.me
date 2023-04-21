@@ -1,0 +1,102 @@
+{% extends 'home/base.html' %}
+{% load static %}
+{% block css %}
+<style>
+    .watermark-input{
+        width:70%;
+    }
+    
+    #imageHeadingDiv{
+        display:none ;
+    }
+</style>
+<link rel="stylesheet" href="{% static 'css/style.css' %} ">
+{% endblock css %}
+
+{% block body %}
+<div class="mt-4 mb-4 container ">
+    <h3 class="mb-4">Make your image copyrighted!</h3>
+    <form class="form-control p-4 needs-validation m-auto"  action="#" enctype="multipart/form-data" method="POST" id='form' novalidate>
+        {% csrf_token %}
+        <div class="input-group mb-4 mt-4">
+            <span class="input-group-text" id="textInput">Text</span>
+            <input type="text" id="textInput" class="form-control" placeholder="Enter text here..." aria-label="text" aria-describedby="textInput" name="watermarkText" required>
+            <div class="valid-feedback">
+                Looks good!
+              </div>
+            <div class="invalid-feedback">
+                Enter valid text.
+              </div>
+        </div>
+        <div class="mb-4 row">
+            <div class="col-sm-6 mb-4">
+
+                <div class="input-group  ">
+                    <span class="input-group-text" id="textInput">Size</span>
+                    <input type="number" id="sizeInput" class="form-control" placeholder="Enter size ( In % of height )" aria-label="text" aria-describedby="sizeInput" name="size"  min = "1" max="100" value="5" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                      </div>
+                    <div class="invalid-feedback">
+                        Enter valid size.
+                      </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                
+                <div class="input-group  ">
+                    <span class="input-group-text" id="textInput">Quality</span>
+                    <input type="number" id="qualityInput" class="form-control" placeholder="Enter quality of image" aria-label="text" aria-describedby="qualityInput" name="quality"  min = "1" max="100" value="100" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                      </div>
+                    <div class="invalid-feedback">
+                        Enter valid image quality.
+                      </div>
+                </div>
+            </div>
+        </div>
+        <div class="mb-4">
+            <label for="opacityInput" class="form-label">Opacity</label>
+            <input type="range" class="form-range" min="10" max="100" value="100" step="5" id="opacityInput" name="opacity">
+        </div>
+        <div class="mb-4">
+            <label for="noInput" class="form-label">No of Watermark</label>
+            <div class="d-flex justify-content-around">
+                <span class="fw-bold">1</span>
+                <input type="range" class="form-range watermark-input" min="1" max="5" value="1" step="1" id="noInput" name="noOfWatermark" >
+                <span class="fw-bold">5</span>
+            </div>
+        </div>
+        <div class="input-group mb-4">
+            <input type="file" class="form-control" id="imageInput" name="images" required multiple>
+            <label class="input-group-text" for="imageInput" >Upload</label>
+            <div class="valid-feedback">
+                Looks good!
+              </div>
+            <div class="invalid-feedback">
+                Upload valid file.
+              </div>
+        </div>
+        <div class="d-grid"><button class=" btn btn-primary " id="submitBtn" type="submit">
+
+            Create Watermark
+        </button></div>
+    </form>
+
+    <div class="mt-4 mb-4" id='imageHeadingDiv'>
+        <h3 class='mb-4'  >Your Images</h3>
+        <div id='imagesDiv'>
+            <h3>Processing...</h3> 
+        </div>
+    </div>
+</div>
+
+
+{% endblock body %}
+
+{% block script %}
+<script src="{% static 'js/script.js' %}"></script>
+{% endblock script %}
+
+

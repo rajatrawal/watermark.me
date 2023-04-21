@@ -1,0 +1,31 @@
+{% extends 'home/base.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% endblock css %}
+
+{% block body %}
+    <div class="centerDiv ">
+        <form action="{% url 'sign_in' %}" method="post">
+            {% csrf_token %}
+
+            <div class="form-floating mb-3">
+                <input type="email" class="form-control" id="emailInput" name="emailInput" placeholder="name@example.com"
+                {% if email %}
+                value="{{email}}"
+                {% endif %}
+                required>
+                <label for="emailInput">Email address</label>
+              </div>
+              <div class="form-floating mb-3">
+                <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+                <label for="password1">Password</label>
+              </div>
+              <div class="d-grid">
+                <button class="btn btn-primary btn-lg">Sign In</button>
+              </div>
+            </div>
+        </form>
+
+{% endblock body %}
