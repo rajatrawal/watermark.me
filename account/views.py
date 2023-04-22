@@ -6,13 +6,15 @@ from . models import UserApi
 from django.contrib import messages
 from watermark.utils import get_data
 from django.views.decorators.csrf import csrf_exempt
-from django.http import JsonResponse
 import json
 from django.http import HttpResponse
 
 @login_required
 def api(request):
-    user_api  = UserApi.objects.get(user=request.user)
+    try:
+        user_api  = UserApi.objects.get(user=request.user)
+    except Exception:
+        return redirect('home')
     return render(request,'account/api.html',{'user_data':user_api,'api':True})
 
 @csrf_exempt

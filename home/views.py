@@ -9,12 +9,12 @@ from . models import ImageModel
 def home(request):
     if request.method != 'POST':
         return render(request,'home/index.html',{'home':True})
-    try:
-        paths = get_data(request)
-        data = json.dumps({'status':200,'paths':paths})
+    # try:
+    paths = get_data(request)
+    data = json.dumps({'status':200,'paths':paths})
 
-    except Exception:
-        data = json.dumps({'status':404})
+    # except Exception:
+        # data = json.dumps({'status':404})
     return JsonResponse(data,safe=False)
 
 @login_required
