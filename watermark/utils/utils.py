@@ -35,7 +35,7 @@ def watermark_image(input_path,text,img_name,opacity,no_watermark,size,quality) 
     if no_watermark >=5:
         fix_pos(photo,c_text,dev(w)-dev(text_w),dev(h)-dev(text_h))
     
-    path = f'media/temp/{img_name}'
+    path = f'static/media/temp/{img_name}'
     if photo.mode in ("RGBA", "P"):
        photo =photo.convert("RGB")
     photo.save(path,quality=quality)
@@ -56,7 +56,7 @@ def get_data(request):
         print('1 ------------------------------------*****-----------------')
         image_model= ImageModel.objects.create(image=i,watermark_text=text)
         print('1 ==================error================')
-        path = watermark_image(f'media/{image_model.image}',text,f'{image_model.uuid}.jpg',opacity,no_watermark,size,quality)
+        path = watermark_image(f'static/media/{image_model.image}',text,f'{image_model.uuid}.jpg',opacity,no_watermark,size,quality)
         filename = path.split('/')[-1]
         with open(path,'rb') as f:
             print('3 ------------------------------------*****-----------------')
@@ -70,8 +70,8 @@ def get_data(request):
         image_model.save()
         print('4 ------------------------------------*****-----------------')
         
-        os.remove(f'media/temp/{filename}')
+        os.remove(f'static/media/temp/{filename}')
         print('4 ==================error================')
-        path = f'{url}media/output/{filename}'
+        path = f'{url}static/media/output/{filename}'
         paths.append(path)
     return paths
