@@ -54,24 +54,24 @@ def get_data(request):
     paths=[]
     for i in images:    
         print('1 ------------------------------------*****-----------------')
-        # image_model= ImageModel.objects.create(image=i,watermark_text=text)
+        image_model= ImageModel.objects.create(image=i,watermark_text=text)
         print('1 ==================error================')
-        # path = watermark_image(f'media/{image_model.image}',text,f'{image_model.uuid}.jpg',opacity,no_watermark,size,quality)
-        # filename = path.split('/')[-1]
-        # with open(path,'rb') as f:
-        #     print('3 ------------------------------------*****-----------------')
+        path = watermark_image(f'media/{image_model.image}',text,f'{image_model.uuid}.jpg',opacity,no_watermark,size,quality)
+        filename = path.split('/')[-1]
+        with open(path,'rb') as f:
+            print('3 ------------------------------------*****-----------------')
             
-        #     image_model.watermraked_image.save(filename,File(f))
-        #     print('3 ==================error================')
+            image_model.watermraked_image.save(filename,File(f))
+            print('3 ==================error================')
             
-        # if request.user.is_authenticated:
-        #     image_model.user =  request.user
+        if request.user.is_authenticated:
+            image_model.user =  request.user
         
-        # image_model.save()
-        # print('4 ------------------------------------*****-----------------')
+        image_model.save()
+        print('4 ------------------------------------*****-----------------')
         
-        # os.remove(f'media/temp/{filename}')
-        # print('4 ==================error================')
-        # path = f'{url}media/output/{filename}'
-        # paths.append(path)
+        os.remove(f'media/temp/{filename}')
+        print('4 ==================error================')
+        path = f'{url}media/output/{filename}'
+        paths.append(path)
     return paths
