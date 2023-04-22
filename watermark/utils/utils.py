@@ -54,7 +54,7 @@ def get_data(request):
     paths=[]
     for i in images:    
         print('1 ------------------------------------*****-----------------')
-        image_model= ImageModel.objects.create(image=i,watermark_text=text)
+        # image_model= ImageModel.objects.create(image=i,watermark_text=text)
         print('1 ==================error================')
         # path = watermark_image(f'media/{image_model.image}',text,f'{image_model.uuid}.jpg',opacity,no_watermark,size,quality)
         # filename = path.split('/')[-1]
