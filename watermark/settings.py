@@ -12,8 +12,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from django.contrib import messages
 from pathlib import Path
 import os
-import cloudinary
-import cloudinary_storage
+
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
