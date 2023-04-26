@@ -2,6 +2,7 @@ from PIL import Image,ImageDraw,ImageFont
 from home.models import ImageModel
 import os 
 from django.core.files import File
+from django.conf import settings
 
 
 def fix_pos(photo,c_text,w,h):
@@ -14,8 +15,10 @@ def watermark_image(input_path,text,img_name,opacity,no_watermark,size,quality) 
     photo = Image.open(input_path)
     w,h = photo.size
     drawing = ImageDraw.Draw(photo)
-    
-    font = ImageFont.truetype('ArefRuqaa-Regular.ttf',int(h*0.01*size))
+
+    font = ImageFont.truetype(
+        f'{settings.BASE_DIR}static/font/arial.ttf', int(h * 0.01 * size)
+    )
     text_w , text_h = drawing.textsize(text,font)
     c_text = Image.new('RGB',(text_w,text_h),color="#000000")
     drawing = ImageDraw.Draw(c_text)
@@ -30,7 +33,7 @@ def watermark_image(input_path,text,img_name,opacity,no_watermark,size,quality) 
         fix_pos(photo,c_text,20,h-text_h-20)
     if no_watermark >=5:
         fix_pos(photo,c_text,dev(w)-dev(text_w),dev(h)-dev(text_h))
-    
+
     path = f'media/temp/{img_name}'
     if photo.mode in ("RGBA", "P"):
        photo =photo.convert("RGB")
