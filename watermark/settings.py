@@ -12,6 +12,9 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from django.contrib import messages
 from pathlib import Path
 import os
+import cloudinary
+import cloudinary_storage
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -41,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'home',
     'account',
+
 ]
 
 MIDDLEWARE = [
@@ -136,11 +140,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 STATIC_ROOT = os.path.join(BASE_DIR , 'static')
 
+MEDIA_URL ='/media/'
+
+MEDIA_ROOT = BASE_DIR/ 'media'
 
 
-
-# MEDIA_URLS ='/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'static/media/')
 LOGIN_URL = '/signIn/' 
 
 MESSAGE_TAGS = {
@@ -150,4 +154,3 @@ MESSAGE_TAGS = {
     messages.WARNING: 'alert-warning',
     messages.ERROR: 'alert-danger',
 }
-

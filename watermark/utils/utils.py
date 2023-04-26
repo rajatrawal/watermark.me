@@ -11,11 +11,7 @@ def fix_pos(photo,c_text,w,h):
 dev = lambda x :int(x/2)
 
 def watermark_image(input_path,text,img_name,opacity,no_watermark,size,quality) -> str:
-    print('2 ------------------------------------*****-----------------')
-    
     photo = Image.open(input_path)
-    print('2 ==================error================')
-    
     w,h = photo.size
     drawing = ImageDraw.Draw(photo)
     
@@ -35,7 +31,7 @@ def watermark_image(input_path,text,img_name,opacity,no_watermark,size,quality) 
     if no_watermark >=5:
         fix_pos(photo,c_text,dev(w)-dev(text_w),dev(h)-dev(text_h))
     
-    path = f'static/media/temp/{img_name}'
+    path = f'media/temp/{img_name}'
     if photo.mode in ("RGBA", "P"):
        photo =photo.convert("RGB")
     photo.save(path,quality=quality)
@@ -53,25 +49,24 @@ def get_data(request):
     opacity = int(float(request.POST.get('opacity')))
     paths=[]
     for i in images:    
-        print('1 ------------------------------------*****-----------------')
+
         image_model= ImageModel.objects.create(image=i,watermark_text=text)
-        print('1 ==================error================')
-        path = watermark_image(f'static/media/{image_model.image}',text,f'{image_model.uuid}.jpg',opacity,no_watermark,size,quality)
+  
+        path = watermark_image(f'media/{image_model.image}',text,f'{image_model.uuid}.jpg',opacity,no_watermark,size,quality)
         filename = path.split('/')[-1]
         with open(path,'rb') as f:
-            print('3 ------------------------------------*****-----------------')
-            
+
             image_model.watermraked_image.save(filename,File(f))
-            print('3 ==================error================')
+
             
         if request.user.is_authenticated:
             image_model.user =  request.user
         
         image_model.save()
-        print('4 ------------------------------------*****-----------------')
+
         
-        os.remove(f'static/media/temp/{filename}')
-        print('4 ==================error================')
-        path = f'{url}static/media/output/{filename}'
+        os.remove(f'media/temp/{filename}')
+
+        path = f'{url}media/output/{filename}'
         paths.append(path)
     return paths
