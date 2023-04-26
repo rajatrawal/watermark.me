@@ -17,7 +17,7 @@ def watermark_image(input_path,text,img_name,opacity,no_watermark,size,quality) 
     drawing = ImageDraw.Draw(photo)
 
     font = ImageFont.truetype(
-        f'{settings.BASE_DIR}static/font/arial.ttf', int(h * 0.01 * size)
+        f'{settings.STATIC_ROOT}font/arial.ttf', int(h * 0.01 * size)
     )
     text_w , text_h = drawing.textsize(text,font)
     c_text = Image.new('RGB',(text_w,text_h),color="#000000")
