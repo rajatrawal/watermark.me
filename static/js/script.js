@@ -38,7 +38,7 @@ let createWatermark = () => {
                         </div>
                     
                         <div class="">
-                            <a href=${path} class="btn btn-primary" download>Download</a>
+                            <a href=${path} class="btn btn-primary" download >Download</a>
                         </div>
                     </div>
                 </div>

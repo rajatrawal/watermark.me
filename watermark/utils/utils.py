@@ -15,10 +15,14 @@ def watermark_image(input_path,text,img_name,opacity,no_watermark,size,quality) 
     photo = Image.open(input_path)
     w,h = photo.size
     drawing = ImageDraw.Draw(photo)
-    print(f'------------------{settings.STATIC_ROOT}fonts/arial.ttf')
-    path = settings.STATIC_ROOT+r'fonts\arial.ttf'
-    # font = ImageFont.truetype(path, int(h * 0.01 * size))
-    font = ImageFont.load_default()
+    print(f'------------------{settings.STATIC_ROOT}/fonts/arial.ttf')
+    try:
+        path = f'{settings.STATIC_ROOT}/fonts/arial.ttf'
+        print('run suceessfully')
+        font = ImageFont.truetype(path, int(h * 0.01 * size))
+    except:
+        font = ImageFont.load_default()
+        print('Error font not loaded')
     text_w , text_h = drawing.textsize(text,font)
     c_text = Image.new('RGB',(text_w,text_h),color="#000000")
     drawing = ImageDraw.Draw(c_text)
@@ -42,7 +46,7 @@ def watermark_image(input_path,text,img_name,opacity,no_watermark,size,quality) 
 
 def get_data(request):
     url = request.META['HTTP_HOST']
-    url = f'http://{url}/' 
+    url = f'https://{url}/' 
     
     text = request.POST.get('watermarkText')
     no_watermark = int(request.POST.get('noOfWatermark'))
