@@ -14,7 +14,7 @@
 
 </head>
 
-<body data-bs-theme="dark">
+<body >
     <nav class="navbar bg-dark navbar-expand-sm sticky-top" data-bs-theme="dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="/">watermark.me</a>
@@ -74,9 +74,9 @@
 
                     <div class="form-check form-switch ">
 
-                        
+
                         <input class="form-check-input " type="checkbox" role="switch" id="flexSwitchCheckChecked"
-                            checked onclick="myFunction()" />
+                             onclick="myFunction()" />
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="grey"
                             class="bi bi-moon-stars " viewBox="0 0 16 16">
                             <path
@@ -111,15 +111,34 @@
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
         crossorigin="anonymous"></script>
     <script>
+        var flexSwitchCheckChecked= document.getElementById('flexSwitchCheckChecked');
+        var theme = localStorage.getItem('theme');
+        var element =document.body;
+        if (theme == null){
+            
+            element.dataset.bsTheme = 'dark';
+            localStorage.setItem('theme', 'dark');
+            
+        }
+        else{
+            element.dataset.bsTheme = theme;
+        }
+        if(theme=='dark'){
 
+            flexSwitchCheckChecked.checked = true;
+        }
         function myFunction() {
-            var element = document.body;
-            element.dataset.bsTheme =
-                element.dataset.bsTheme == "light" ? "dark" : "light";
+
+            theme = element.dataset.bsTheme;
+
+            theme = theme == "light" ? "dark" : "light";
+            element.dataset.bsTheme = theme
+            localStorage.setItem('theme', theme);
+            console.log(theme);
         }
 
 
-        
+
     </script>
     <main>
         {% block body %}

@@ -3,11 +3,13 @@ let csrftoken = document.getElementsByName('csrfmiddlewaretoken')[0];
 let fileName;
 let imagesDiv = document.getElementById('imagesDiv');
 let imageHeadingDiv = document.getElementById('imageHeadingDiv');
+let headingDiv = document.getElementById('headingDiv');
 
 // data.append('')
 
 let createWatermark = () => {
     imageHeadingDiv.style.display = 'block';
+    headingDiv.style.display = 'block';
     let form = document.getElementById('form');
     let data = new FormData(form);
     let url = window.location.href;
@@ -24,7 +26,6 @@ let createWatermark = () => {
         }
 
     ).then(response => response.json()).then(data => {
-        console.log(data);
         data = JSON.parse(data);
         if (data['status'] == 200) {
             tempStr = ``;
@@ -46,9 +47,9 @@ let createWatermark = () => {
             }
         }
         else {
-            tempStr = '<h4 class="text-danger">Someting Error Occoured!</h4>';
+            headingDiv.innerHTML = '<h4 class="text-danger">Someting Error Occoured!</h4>';
         }
-        imagesDiv.innerHTML = tempStr;
+        imagesDiv.innerHTML += tempStr;
 
     })
 }
@@ -67,7 +68,7 @@ let createWatermark = () => {
             if (!form.checkValidity()) {
                 event.stopPropagation();
             }
-            else{
+            else {
                 createWatermark();
             }
             form.classList.add('was-validated')

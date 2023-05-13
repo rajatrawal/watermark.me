@@ -25,10 +25,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
-ALLOWED_HOSTS = ['watermark-me.onrender.com',"127.0.0.1:8000","p02--watermark--2j9gglbgkrfp.code.run"]
+
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = False
+
+ALLOWED_HOSTS = ['watermark-me.onrender.com',"127.0.0.1","p02--watermark--2j9gglbgkrfp.code.run"]
 
 
 
@@ -80,20 +82,21 @@ WSGI_APPLICATION = 'watermark.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DATABASES = {
-   'default': {
-       'ENGINE': 'django.db.backends.postgresql_psycopg2',
-       'NAME': 'postgres',
-       'USER': 'postgres',
-       'PASSWORD': 'ZLIGzpek9Amc5Wiu',
-       'HOST': 'db.sspjyzwsetbtfrlqogvg.supabase.co',
-       'PORT': '5432',
-   }
-}
+# DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#        'NAME': 'postgres',
+#        'USER': 'postgres',
+#        'PASSWORD': 'ZLIGzpek9Amc5Wiu',
+#        'HOST': 'db.sspjyzwsetbtfrlqogvg.supabase.co',
+#        'PORT': '5432',
+#    }
+# }
 
 DATABASES = {
    'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
 }
+
 
 
 # Password validation
