@@ -28,7 +28,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['watermark-me.onrender.com',"127.0.0.1:8000"]
+ALLOWED_HOSTS = ['watermark-me.onrender.com',"127.0.0.1:8000","p02--watermark--2j9gglbgkrfp.code.run"]
 
 
 
