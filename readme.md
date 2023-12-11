@@ -125,6 +125,6 @@ files = [
 ```
 
 ## Support 🤔
-If you encounter any issues or have questions, feel free to reach out to us through the [GitHub Issues](https://github.com/rajatrawal/video-call-django/issues) page.
+If you encounter any issues or have questions, feel free to reach out to us through the [GitHub Issues](https://github.com/rajatrawal/watermark.me/issues) page.
 
 Thank you for choosing Watermark-Me! 🌊 Happy watermarking!
