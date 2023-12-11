@@ -34,12 +34,12 @@ Explore the live demo: [Watermark-Me Live Demo](https://watermark-me.onrender.co
 
 1. **Clone the Repository:**
    ```bash
-   git clone https://github.com/rajatrawal/video-call-django.git
+   git clone https://github.com/rajatrawal/watermark.me
    ```
 
 2. **Navigate to the Project Directory:**
    ```bash
-   cd video-call-django
+   cd watermark-me
    ```
 
 3. **Install Dependencies:**
