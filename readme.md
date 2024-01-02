@@ -104,7 +104,7 @@ for i in data:
 ### Explanation of Fields
 
 - **username:** Your username is `example@gmail.com` (Mandatory Field).
-- **key:** Your API key is `ed9f7f84-0d2f-41ed-b1f5-4gc20e65c025`[Demo] (Mandatory Field).
+- **key:** Your API key is `ed9f7f84-0d2f-41ed-b1f5-4gc20e65c025`[Example] (Mandatory Field).
 - **watermarkText:** The watermark text will be printed on the image (Default = "watermark.me").
 - **noOfWatermark:** The number of watermark texts on the image (An integer field, Default = 1, Min = 1, and Max = 5).
 - **size:** Size of the watermark in % of height (An integer field, Default = 5, Min = 1, and Max = 100).
